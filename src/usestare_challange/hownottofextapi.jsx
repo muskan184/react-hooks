@@ -5,20 +5,37 @@ export const Howtonotfetchapi = () => {
   const [loading, setLoading] = useState(true);
   const [error, seterror] = useState("");
 
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-      .then((res) => res.json())
-      .then((data) => {
-        setApidata(data);
-        setLoading(!loading);
-      })
-      .catch((error) => {
-        console.log(error);
-        seterror(error);
-        setLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+  //     // .then((res) => res.json())
+  //     // .then((data) => {
+  //     //   setApidata(data);
+  //     //   setLoading(!loading);
+  //     // })
+  //     // .catch((error) => {
+  //     //   console.log(error);
+  //     //   seterror(error);
+  //     //   setLoading(false);
+  //     // });
 
+  // }, []);
+
+  const fetchPokemon = async () => {
+    try {
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+      const data = await res.json();
+      setApidata(data);
+      setLoading(!loading);
+    } catch {
+      console.log(error);
+      seterror(error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPokemon();
+  }, []);
   console.log(apidata);
   if (loading) {
     return (
