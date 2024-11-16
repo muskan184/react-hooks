@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { ReactUseState } from "./useEffect";
 import { Challenge } from "./usestare_challange/effectchallange";
